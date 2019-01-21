@@ -1,0 +1,27 @@
+{
+  "name": "exchange-rate-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taras-Holyk/exhange-rate-parser.git"
+  },
+  "author": "Taras Holyk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taras-Holyk/exhange-rate-parser/issues"
+  },
+  "homepage": "https://github.com/Taras-Holyk/exhange-rate-parser#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
