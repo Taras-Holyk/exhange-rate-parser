@@ -1,10 +1,11 @@
 function index(req, res) {
-    res.status(200)
-        .json({
-            message: ''
-        });
+  res.status(200)
+    .json({
+      success: true,
+      message: ''
+    });
 }
 
 module.exports = {
-    index
+  index
 };
