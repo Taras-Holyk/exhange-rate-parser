@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon app/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "module-alias": "^2.1.0",
-    "mongoose": "^5.4.5"
+    "mongoose": "^5.4.5",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "eslint": "^5.12.1",
@@ -33,7 +35,8 @@
   },
   "_moduleAliases": {
     "@config": "./config",
-    "@routes": "./server/routes",
-    "@controllers": "./server/controllers"
+    "@routes": "./app/routes",
+    "@controllers": "./app/controllers",
+    "@handlers": "./app/handlers"
   }
 }

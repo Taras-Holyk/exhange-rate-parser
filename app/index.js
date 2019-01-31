@@ -6,10 +6,19 @@ if (config.error) {
 }
 
 const port = process.env.APP_PORT || 3000;
-const app = require('./server');
+const express = require('express');
+const app = express();
+
+const routes = require('@routes');
+const errorHandler = require('@handlers/error.handler');
 
 require('@config/database');
+
+app.use(routes);
+app.use(errorHandler);
 
 app.listen(port, function () {
   console.log(`App running on the port ${port}`);
 });
+
+module.exports = app;
