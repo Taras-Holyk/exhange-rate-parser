@@ -46,6 +46,7 @@
     "@validators": "./app/validators",
     "@helpers": "./app/helpers",
     "@repositories": "./app/repositories",
-    "@transformers": "./app/transformers"
+    "@transformers": "./app/transformers",
+    "@middlewares": "./app/middlewares"
   }
 }

@@ -1,7 +1,8 @@
 const express = require('express');
-const appController = require('@controllers/app.controller');
+const controller = require('@controllers/app.controller');
+const authMiddleware = require('@middlewares/auth.middleware');
 const router = express.Router();
 
-router.get('', appController.index);
+router.get('/exchange-rates', authMiddleware.checkToken, controller.index);
 
 module.exports = router;
