@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('@models/user.model');
 const userRepository = require('@repositories/user.repository');
+const userTransformer = require('@transformers/user.transformer');
 
 async function register(req, res) {
   try {
@@ -11,15 +12,18 @@ async function register(req, res) {
       password: req.body.password
     })).save();
 
-    res.status(200)
+    return res.status(200)
       .json({
-        status: true,
+        success: true,
         message: 'Registered successfully',
-        data: user
+        data: userTransformer.transform(user)
       });
   } catch (error) {
-    res.status(400)
-      .send('unable to save to database');
+    return res.status(400)
+      .json({
+        success: false,
+        message: 'Unable to save to the database'
+      });
   }
 }
 
@@ -27,7 +31,7 @@ async function login(req, res) {
   const user = await userRepository.getByEmail(req.body.email);
 
   if (!user) {
-    res.status(400)
+    return res.status(400)
       .json({
         success: false,
         message: 'User not found'
@@ -36,10 +40,10 @@ async function login(req, res) {
 
   const isMatch = await bcrypt.compare(req.body.password, user.password);
   if (!isMatch) {
-    res.status(403)
+    return res.status(403)
       .json({
         success: false,
-        message: 'Bad credentials'
+        message: 'Wrong credentials'
       });
   }
 
@@ -58,7 +62,7 @@ async function login(req, res) {
   return res.status(200)
     .json({
       success: true,
-      message: 'Authentication successful!',
+      message: 'Authentication successful',
       token: token,
       type: 'Bearer'
     });
