@@ -16,11 +16,19 @@ function getRecentByUserAndDate(userId, date) {
   }).sort({ createdAt: -1 });
 }
 
+function getLastByUser(userId) {
+  return Model.findOne({
+    user_id: userId,
+    origin: 'minfin'
+  }).sort({ createdAt: -1 });
+}
+
 function store(params) {
   return new Model(params).save();
 }
 
 module.exports = {
   getRecentByUserAndDate,
-  store
+  store,
+  getLastByUser
 };

@@ -1,4 +1,8 @@
 const request = require('request-promise');
+const ejs = require('ejs');
+const fs = require('fs');
+const pdf = require('html-pdf');
+
 const dateHelper = require('@helpers/date.helper');
 const parserLogRepository = require('@repositories/parser-log.repository');
 
@@ -37,7 +41,7 @@ async function index(req, res) {
         data: minFinExchangeRates
       });
   } catch (e) {
-    return res.status(200)
+    return res.status(500)
       .json({
         success: false,
         message: 'Internal server error'
@@ -45,6 +49,41 @@ async function index(req, res) {
   }
 }
 
+async function exportPdf(req, res) {
+  const lastRequestedData = await parserLogRepository.getLastByUser(req.user.id);
+  if (!lastRequestedData) {
+    return res.status(500)
+      .json({
+        success: false,
+        message: 'Internal server error'
+      });
+  }
+
+  const html = fs.readFileSync('./views/pdf.report.ejs', 'utf8');
+  const rendered = ejs.render(html, { exchangeRates: lastRequestedData.exchange_rates });
+  const filename = `${req.user.id}_${(new Date().getTime())}.pdf`;
+
+  pdf.create(rendered, { format: 'Letter' })
+    .toFile(`./public/pdf/${filename}`, (err, response) => {
+      if (err) {
+        return res.status(500)
+          .json({
+            success: false,
+            message: 'Internal server error'
+          });
+      }
+
+      response.filename = `${process.env.APP_URL}/pdf/${filename}`;
+
+      return res.status(200)
+        .json({
+          success: true,
+          data: response
+        });
+    });
+}
+
 module.exports = {
-  index
+  index,
+  exportPdf
 };

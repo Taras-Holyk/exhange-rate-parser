@@ -20,7 +20,9 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "html-pdf": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
     "module-alias": "^2.1.0",
     "mongoose": "^5.4.5",
@@ -47,6 +49,7 @@
     "@helpers": "./app/helpers",
     "@repositories": "./app/repositories",
     "@transformers": "./app/transformers",
-    "@middlewares": "./app/middlewares"
+    "@middlewares": "./app/middlewares",
+    "@views": "./views"
   }
 }

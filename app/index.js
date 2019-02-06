@@ -17,6 +17,7 @@ require('@config/database');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.use(routes);
 app.use(errorHandler);
 

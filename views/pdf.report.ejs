@@ -1,0 +1,64 @@
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid #000;
+        text-align: center;
+        padding: 5px;
+    }
+</style>
+<html>
+    <body>
+        <table>
+            <tr>
+                <td>КУРС ДO ГРИВНІ</td>
+                <td>
+                    Готівковий ринок<br/>
+                    <small>Купівля / Продаж</small>
+                </td>
+                <td>НБУ</td>
+                <td>
+                    Чорний ринок<br/>
+                    <small>Купують / Продають</small>
+                </td>
+            </tr>
+            <tr>
+                <td>ДОЛАР</td>
+                <td><%= exchangeRates.usd.cash.purchase %> / <%= exchangeRates.usd.cash.selling %></td>
+                <td><%= exchangeRates.usd.nbu%></td>
+                <td><%= exchangeRates.usd.black.purchase %> / <%= exchangeRates.usd.black.selling %></td>
+            </tr>
+            <tr>
+                <td>ЄВРО</td>
+                <td><%= exchangeRates.eur.cash.purchase %> / <%= exchangeRates.eur.cash.selling %></td>
+                <td><%= exchangeRates.eur.nbu%></td>
+                <td><%= exchangeRates.eur.black.purchase %> / <%= exchangeRates.eur.black.selling %></td>
+            </tr>
+            <tr>
+                <td>РУБЛЬ</td>
+                <td><%= exchangeRates.rub.cash.purchase %> / <%= exchangeRates.rub.cash.selling %></td>
+                <td><%= exchangeRates.rub.nbu%></td>
+                <td><%= exchangeRates.rub.black.purchase %> / <%= exchangeRates.rub.black.selling %></td>
+            </tr>
+            <tr>
+                <td>ПОЛЬСЬКИЙ ЗЛОТИЙ</td>
+                <td><%= exchangeRates.pln.cash.purchase %> / <%= exchangeRates.pln.cash.selling %></td>
+                <td><%= exchangeRates.pln.nbu%></td>
+                <td><%= exchangeRates.pln.black.purchase %> / <%= exchangeRates.pln.black.selling %></td>
+            </tr>
+            <tr>
+                <td>АНГЛІЙСЬКИЙ ФУНТ СТЕРЛІНГІВ</td>
+                <td><%= exchangeRates.gbp.cash.purchase %> / <%= exchangeRates.gbp.cash.selling %></td>
+                <td><%= exchangeRates.gbp.nbu%></td>
+                <td><%= exchangeRates.gbp.black.purchase %> / <%= exchangeRates.gbp.black.selling %></td>
+            </tr>
+            <tr>
+                <td>ШВЕЙЦАРСЬКИЙ ФРАНК</td>
+                <td><%= exchangeRates.chf.cash.purchase %> / <%= exchangeRates.chf.cash.selling %></td>
+                <td><%= exchangeRates.chf.nbu%></td>
+                <td><%= exchangeRates.chf.black.purchase %> / <%= exchangeRates.chf.black.selling %></td>
+            </tr>
+        </table>
+    </body>
+</html>
