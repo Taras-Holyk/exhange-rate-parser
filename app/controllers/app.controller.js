@@ -61,7 +61,7 @@ async function exportPdf(req, res) {
 
   const html = fs.readFileSync('./views/pdf.report.ejs', 'utf8');
   const rendered = ejs.render(html, { exchangeRates: lastRequestedData.exchange_rates });
-  const filename = `${req.user.id}_${(new Date().getTime())}.pdf`;
+  const filename = `${req.user.id}_${new Date().getTime()}.pdf`;
 
   pdf.create(rendered, { format: 'Letter' })
     .toFile(`./public/pdf/${filename}`, (err, response) => {
