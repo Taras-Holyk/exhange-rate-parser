@@ -64,7 +64,8 @@ async function login(req, res) {
       success: true,
       message: 'Authentication successful',
       token: token,
-      type: 'Bearer'
+      type: 'Bearer',
+      data: userTransformer.transform(user)
     });
 }
 

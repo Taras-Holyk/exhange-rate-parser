@@ -83,7 +83,12 @@ async function exportPdf(req, res) {
     });
 }
 
+async function exportCsv(req, res) {
+  return '';
+}
+
 module.exports = {
   index,
-  exportPdf
+  exportPdf,
+  exportCsv
 };
