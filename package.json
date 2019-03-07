@@ -6,7 +6,22 @@
   "scripts": {
     "start": "node app/index.js",
     "dev": "nodemon app/index.js",
-    "test": "NODE_ENV=test mocha ./tests/*.js --timeout=10000"
+    "test": "NODE_ENV=test mocha ./tests/*.js --timeout=10000 --exit",
+    "test:coverage": "nyc npm test"
+  },
+  "nyc": {
+    "include": [
+      "**/*.js",
+      "./*.js"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/tests/**",
+      "**/coverage/**",
+      "**/index.js",
+      "**/config/database.js"
+    ],
+    "all": true
   },
   "repository": {
     "type": "git",
@@ -44,7 +59,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "faker": "^4.1.0",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "nyc": "^13.3.0"
   },
   "_moduleAliases": {
     "@config": "./config",
