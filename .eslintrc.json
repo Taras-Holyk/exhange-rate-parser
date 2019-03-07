@@ -1,7 +1,8 @@
 {
     "extends": "standard",
     "env": {
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "rules": {
         "no-trailing-spaces": ["error", { "skipBlankLines": true }],
@@ -10,6 +11,12 @@
             "named": "never",
             "asyncArrow": "always"
         }],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "should|expect"
+            }
+        ]
     }
 }
