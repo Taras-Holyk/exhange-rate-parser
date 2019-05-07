@@ -101,7 +101,6 @@ async function exportCsv(req, res) {
     const row = [];
     row.push(currency.title);
     row.push(`${currency.cash.purchase}/${currency.cash.selling}`);
-    console.log(currency.black);
     row.push(currency.nbu);
     row.push(`${currency.black.purchase}/${currency.black.selling}`);
 
