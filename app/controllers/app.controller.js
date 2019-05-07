@@ -2,6 +2,7 @@ const request = require('request-promise');
 const ejs = require('ejs');
 const fs = require('fs');
 const pdf = require('html-pdf');
+const os = require('os');
 
 const dateHelper = require('@helpers/date.helper');
 const parserLogRepository = require('@repositories/parser-log.repository');
@@ -84,7 +85,38 @@ async function exportPdf(req, res) {
 }
 
 async function exportCsv(req, res) {
-  return '';
+  const lastRequestedData = await parserLogRepository.getLastByUser(req.user.id);
+
+  if (!lastRequestedData) {
+    return res.status(500)
+      .json({
+        success: false,
+        message: 'Internal server error'
+      });
+  }
+  const filename = `${req.user.id}_${new Date().getTime()}.csv`;
+  const output = [];
+
+  for (let currency of lastRequestedData.exchange_rates) {
+    const row = [];
+    row.push(currency.title);
+    row.push(`${currency.cash.purchase}/${currency.cash.selling}`);
+    console.log(currency.black);
+    row.push(currency.nbu);
+    row.push(`${currency.black.purchase}/${currency.black.selling}`);
+
+    output.push(row.join());
+  }
+
+  fs.writeFileSync(`./public/csv/${filename}`, output.join(os.EOL));
+
+  return res.status(200)
+    .json({
+      success: true,
+      data: {
+        filename: `${process.env.APP_URL}/csv/${filename}`
+      }
+    });
 }
 
 module.exports = {
