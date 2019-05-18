@@ -52,5 +52,17 @@ describe('app controller', function () {
       });
   });
 
-  it('should generate csv report');
+  it('should generate csv report', function (done) {
+    chai.request(server)
+      .get('/exchange-rates/export/csv')
+      .set('Authorization', `Bearer ${token}`)
+      .end(function (err, res) {
+        res.should.have.status(200);
+        res.body.should.have.property('success').equal(true);
+        res.body.should.have.property('data').an('object');
+        res.body.data.should.have.property('filename').a('string');
+
+        done();
+      });
+  });
 });

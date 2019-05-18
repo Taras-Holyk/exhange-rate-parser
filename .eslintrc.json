@@ -17,6 +17,7 @@
             {
                 "varsIgnorePattern": "should|expect"
             }
-        ]
+        ],
+        "handle-callback-err": ["error", "never"]
     }
 }

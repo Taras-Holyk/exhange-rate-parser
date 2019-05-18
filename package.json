@@ -7,7 +7,8 @@
     "start": "node app/index.js",
     "dev": "nodemon app/index.js",
     "test": "NODE_ENV=test mocha ./tests/*.js --timeout=10000 --exit",
-    "test:coverage": "nyc npm test"
+    "test:coverage": "nyc npm test",
+    "lint": "./node_modules/.bin/eslint ."
   },
   "nyc": {
     "include": [

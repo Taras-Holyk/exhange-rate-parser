@@ -8,5 +8,5 @@ function processErrors(res, next, errors) {
 }
 
 module.exports = {
-  processErrors: processErrors
+  processErrors
 };

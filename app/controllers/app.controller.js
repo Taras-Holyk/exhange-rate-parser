@@ -94,6 +94,7 @@ async function exportCsv(req, res) {
         message: 'Internal server error'
       });
   }
+
   const filename = `${req.user.id}_${new Date().getTime()}.csv`;
   const output = [];
 
